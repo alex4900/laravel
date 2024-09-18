@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TodoControleur;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PingPongControleur;
 use App\Http\Controllers\TestFlashController;
 
@@ -17,3 +18,5 @@ Route::post('/traitement', [TestFlashController::class, 'traitement']);
 Route::get('/todolist', [TodoControleur::class, 'todolist']);
 Route::post('/addtodo', [TodoControleur::class, 'addtodo']);
 Route::get('/todo/terminer/{id}', [TodoControleur::class, 'mark']);
+Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');

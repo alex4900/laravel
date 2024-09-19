@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\AuthentificationControleur;
+use App\Http\Middleware\CheckAuth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TodoControleur;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PingPongControleur;
 use App\Http\Controllers\TestFlashController;
+use App\Http\Controllers\AuthentificationControleur;
 
 
 Route::get('/', function () {
@@ -16,9 +17,9 @@ Route::get('/ping', [PingPongControleur::class, 'ping']);
 Route::get('/pong', [PingPongControleur::class, 'pong']);
 Route::get('/flash', [TestFlashController::class, 'main']);
 Route::post('/traitement', [TestFlashController::class, 'traitement']);
-Route::get('/todolist', [TodoControleur::class, 'todolist']);
-Route::post('/addtodo', [TodoControleur::class, 'addtodo']);
-Route::get('/todo/terminer/{id}', [TodoControleur::class, 'mark']);
+Route::get('/todolist', [TodoControleur::class, 'todolist'])->middleware(CheckAuth::class);
+Route::post('/addtodo', [TodoControleur::class, 'addtodo'])->middleware(CheckAuth::class);
+Route::get('/todo/terminer/{id}', [TodoControleur::class, 'mark'])->middleware(CheckAuth::class);
 Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::get('/connexion', [AuthentificationControleur::class, 'loginview']);

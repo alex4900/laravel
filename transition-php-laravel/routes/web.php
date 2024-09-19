@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthentificationControleur;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TodoControleur;
 use App\Http\Controllers\ContactController;
@@ -20,3 +21,7 @@ Route::post('/addtodo', [TodoControleur::class, 'addtodo']);
 Route::get('/todo/terminer/{id}', [TodoControleur::class, 'mark']);
 Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/connexion', [AuthentificationControleur::class, 'loginview']);
+Route::post('/traitementLogin', [AuthentificationControleur::class, 'traitementLogin']);
+Route::get('/register', [AuthentificationControleur::class, 'registerView']);
+Route::post('/traitementRegister', [AuthentificationControleur::class, 'traitementRegister']);

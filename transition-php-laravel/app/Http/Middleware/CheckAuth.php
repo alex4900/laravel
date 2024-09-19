@@ -17,7 +17,7 @@ class CheckAuth
 {
     // Vous devez utiliser la session pour vérifier si l'utilisateur est connecté.
     // $request->session()->has('user') par exemple
-    if ($request->session()->has('utilisateur')==false) {
+    if ($request->session()->has('user')==false) {
         return redirect('/connexion');
     }
 
